@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <title> Tiket Bioskop - TST </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+    <style>
+        body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+    </style>
+
+
+    <body class="w3-light-grey w3-content" style="max-width:1600px">
+
+    <!-- Sidebar/menu -->
+    <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+        <div class="w3-container">
+            <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+                <i class="fa fa-remove"></i>
+            </a>
+            <h4>
+                <b> Tiket Bioskop TST </b>
+            </h4>
+            <p class="w3-text-grey"> 18218016 <br> Vhydie Gilang Christianto The </p>
+        </div>
+        <div class="w3-bar-block">
+            <a href="{{url_for('get_single_check')}}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-th-large fa-fw w3-margin-right"></i> TICKET </a> 
+            <a href="{{url_for('get_single_pesan')}}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-user fa-fw w3-margin-right"></i> ORDER </a> 
+        </div>
+    </nav>
+
+    <!-- Overlay effect when opening sidebar on small screens -->
+    <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+    <!-- !PAGE CONTENT! -->
+    <div class="w3-main" style="margin-left:300px">
+
+    <!-- Header -->
+    <header id="portfolio">
+        <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+        <div class="w3-container">
+            <div class="w3-section w3-bottombar w3-padding-16">
+                {% with cur_id = data[9] %}
+                <button class="btn btn-lg btn-primary btn-block" type="submit" style="background-color: black; color: white; padding-right:.75rem;padding-left:.75rem;padding:.22rem .75rem;font-size:0.75rem;line-height:1.5;border-radius:.3rem"> <a href="{{url_for('get_single_ticket', id = cur_id)}}">Back</a></button>
+                {% endwith %}
+                <h1><b> Update Data Tiket </b></h1>
+            </div>
+        </div>
+    </header>
+  
+    <!-- Ordering Section -->
+    <div class="w3-container w3-padding-large w3-grey">
+        <form method="POST">
+        <div class="w3-section">
+            <label>Nama Lengkap</label>
+            <input class="w3-input w3-border" type="text" name="name" placeholder="{{data[0]}}" required autofocus>
+        </div>
+        <div class="w3-section">
+            <label>Kota</label>
+            <input class="w3-input w3-border" type="text" name="kota" placeholder="{{data[1]}}" required>
+        </div>
+        <div class="w3-section">
+            <label>Nama Bioskop</label>
+            <input class="w3-input w3-border" type="text" name="bioskop" placeholder="{{data[2]}}" required>
+        </div>
+        <div class="w3-section">
+            <label>Lokasi</label>
+            <input class="w3-input w3-border" type="text" name="letak" placeholder="{{data[3]}}" required>
+        </div>
+        <div class="w3-section">
+            <label>Nama Film</label>
+            <input class="w3-input w3-border" type="text" name="film" placeholder="{{data[4]}}" required>
+        </div>
+        <div class="w3-section">
+            <label>Tanggal</label>
+            <input class="w3-input w3-border" type="date" name="tgl" placeholder="{{data[5]}}" required>
+        </div>
+        <div class="w3-section">
+            <label>Waktu</label>
+            <input class="w3-input w3-border" type="time" name="jam" placeholder="{{data[6]}}" required>
+        </div>
+        <div class="w3-section">
+            <label>Tempat Duduk</label>
+            <input class="w3-input w3-border" type="text" name="posisi" placeholder="{{data[7]}}" minlength="3" maxlength="3" required>
+        </div>
+        {% with cur_id = data[9] %}
+        <button type="submit" class="w3-button w3-black w3-margin-bottom"><i class="fa fa-paper-plane w3-margin-right"></i> Update </button>
+        {% endwith %}    
+    </form>
+    </div>
+
+<!-- End page content -->
+</div>
+
+<script>
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+
+</body>
+</html>

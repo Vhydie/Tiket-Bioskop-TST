@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <title> Tiket Bioskop - TST </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+    <style>
+        body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+    </style>
+
+
+    <body class="w3-light-grey w3-content" style="max-width:1600px">
+
+    <!-- Sidebar/menu -->
+    <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+        <div class="w3-container">
+            <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey" title="close menu">
+                <i class="fa fa-remove"></i>
+            </a>
+            <h4>
+                <b> Tiket Bioskop TST </b>
+            </h4>
+            <p class="w3-text-grey"> 18218016 <br> Vhydie Gilang Christianto The </p>
+        </div>
+        <div class="w3-bar-block">
+            <a href="{{url_for('get_api_single_check')}}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-th-large fa-fw w3-margin-right"></i> TICKET </a> 
+            <a href="{{url_for('get_api_single_pesan')}}" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-user fa-fw w3-margin-right"></i> ORDER </a> 
+        </div>
+    </nav>
+
+    <!-- Overlay effect when opening sidebar on small screens -->
+    <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+    <!-- !PAGE CONTENT! -->
+    <div class="w3-main" style="margin-left:300px">
+
+    <!-- Header -->
+    <header id="portfolio">
+        <span class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+        <div class="w3-container">
+            <h1><b> Pemesanan Tiket </b></h1>
+            <div class="w3-section w3-bottombar w3-padding-16"> 
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <div style="z-index: 9999999; margin-left: 15px; color:blue"><b>{{ message }}</b></div>
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+    </header>
+  
+    <!-- Ordering Section -->
+    <div class="w3-container w3-padding-large w3-grey">
+        <form method="POST">
+        <div class="w3-section">
+            <label>Nama Lengkap</label>
+            <input class="w3-input w3-border" type="text" name="name" placeholder="Nama Anda" required autofocus>
+        </div>
+        <div class="w3-section">
+            <label>Email (Pastikan telah terdaftar dalam Google)</label>
+            <input class="w3-input w3-border" type="email" name="email" placeholder="Email Anda yang harus terdaftar pada Google" required>
+        </div>
+        <div class="w3-section">
+            <label>Password (Pastikan password sama dengan password email Google) </label>
+            <input class="w3-input w3-border" type="password" name="password" placeholder="Password Anda yang sesuai dengan akun Google" required>
+        </div>
+        <div class="w3-section">
+            <label>Kota</label>
+            <input class="w3-input w3-border" type="text" name="kota" placeholder="Kota Anda" required>
+        </div>
+        <div class="w3-section">
+            <label>Nama Bioskop</label>
+            <input class="w3-input w3-border" type="text" name="bioskop" placeholder="XXI / CGV / 21" required>
+        </div>
+        <div class="w3-section">
+            <label>Lokasi</label>
+            <input class="w3-input w3-border" type="text" name="letak" placeholder="Lokasi (Mall) Bioskop yang ingin Dituju" required>
+        </div>
+        <div class="w3-section">
+            <label>Nama Film</label>
+            <input class="w3-input w3-border" type="text" name="film" placeholder="Nama Film yang ingin Dipesan" required>
+        </div>
+        <div class="w3-section">
+            <label>Tanggal</label>
+            <input class="w3-input w3-border" type="date" name="tgl" placeholder="Tanggal Menonton Film" required>
+        </div>
+        <div class="w3-section">
+            <label>Waktu</label>
+            <input class="w3-input w3-border" type="time" name="jam" placeholder="Waktu Menonton Film" required>
+        </div>
+        <div class="w3-section">
+            <label>Tempat Duduk</label>
+            <input class="w3-input w3-border" type="text" name="posisi" placeholder="Posisi Tempat Duduk sewaktu Menonton (3 Digit dengan format XYY (X = Huruf, Y = Angka))" minlength="3" maxlength="3" required>
+        </div>
+        <button type="submit" class="w3-button w3-black w3-margin-bottom"><i class="fa fa-paper-plane w3-margin-right"></i> Order Now! </button>
+        </form>
+    </div>
+
+ 
+<!-- End page content -->
+</div>
+
+<script>
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+
+</body>
+</html>
